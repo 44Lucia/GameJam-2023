@@ -78,8 +78,8 @@ public class SoundManager : MonoBehaviour
 
         // LOAD ALL THE MUSIC CLIPS
         m_backgroundMusic = new AudioClip[(int)BackGroundClipName.LAST_NO_USE];
-        m_backgroundMusic[(int)BackGroundClipName.MUSIC_1] = Resources.Load<AudioClip>("Sound/BackgroundSound");
-        m_backgroundMusic[(int)BackGroundClipName.MUSIC_2] = Resources.Load<AudioClip>("Sound/BacjgroundSound2");
+        m_backgroundMusic[(int)BackGroundClipName.MUSIC_1] = Resources.Load<AudioClip>("Sound/BackgroundSound2");
+        m_backgroundMusic[(int)BackGroundClipName.MUSIC_2] = Resources.Load<AudioClip>("Sound/BackgroundSound2");
         m_backgroundMusic[(int)BackGroundClipName.MUSIC_3] = Resources.Load<AudioClip>("Sound/victoria");
         m_backgroundMusic[(int)BackGroundClipName.MUSIC_4] = Resources.Load<AudioClip>("Sound/derrota");
 
