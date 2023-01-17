@@ -131,4 +131,7 @@ public class SoundManager : MonoBehaviour
 
     public float EffectVolume { get { return m_generalVolumeEffects; } }
     public float BackgroundVolume { get { return m_generalVolumeBackground; } }
+
+    public AudioClip[] GetBackgroundMusic() { return m_backgroundMusic; }
+    public AudioClip GetBackgroundMusicByIndex(int index) { return m_backgroundMusic[index]; }
 }
