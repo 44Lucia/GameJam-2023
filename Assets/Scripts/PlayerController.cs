@@ -42,11 +42,14 @@ public class PlayerController : MonoBehaviour
         {
             armUp.AddTorque(1000);
         }
+        else { armUp.AddTorque(-1000); }
+
         if (input.GetIsShootingDownPlayer1Pressed())
         {
             armDown.gravityScale = 1;
             armDown.AddTorque(-1000);
         }
+        else { armDown.gravityScale = 0; armDown.AddTorque(1000); }
 
         player.Move(finalVelocity * Time.deltaTime);
     }
