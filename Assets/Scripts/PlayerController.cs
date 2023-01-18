@@ -6,21 +6,21 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Manager")]
     private InputManager input;
+    private CharacterController player;
 
     private Vector3 direction;
     private Vector3 finalVelocity = Vector3.zero;
 
     [Header("PlayerParameters")]
-    private float speed;
+    [SerializeField]private float speed;
     private float maxSpeed;
-    private Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     void Start()
     {
         input = InputManager._INPUT_MANAGER;
 
-        rb2d = GetComponent<Rigidbody2D>();
+        player = GetComponent<CharacterController>();
 
         //Default values movement
         finalVelocity = Vector3.zero;
@@ -32,9 +32,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+
+        player.Move(finalVelocity * Time.deltaTime);
     }
 
     private void Move()
     {
+        //GetAxis: calcular velocidad de X y Z
+        direction = new Vector3(input.GetMovementButtonPressed().x, direction.y, input.GetMovementButtonPressed().y);
+        direction.y = -1f;
+        direction.Normalize();
+
+        //Velocidad final XZ
+        finalVelocity.x = direction.x * speed;
+        finalVelocity.z = direction.z * speed;
     }
 }
