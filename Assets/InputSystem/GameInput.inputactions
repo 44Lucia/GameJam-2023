@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShootPlayer1Up",
+                    "type": "Button",
+                    "id": "57e7699a-f96f-4eb2-acbb-a13536e1a9b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootPlayer1Down",
+                    "type": "Button",
+                    "id": "65b6d2b8-a8df-4e1b-a41d-79717057429f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -90,6 +108,28 @@
                     "action": "MovePlayer2",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f91d5b84-8e76-4433-b3df-c71522e7f9d2",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootPlayer1Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c556c6cd-d4ba-479b-afd4-b930eaf8dd34",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootPlayer1Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
