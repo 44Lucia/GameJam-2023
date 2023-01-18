@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -45,5 +46,38 @@ public class MenuManager : MonoBehaviour
         {
             pnl_credits = tempGO;
         }
+    }
+
+    public void OpenMainMenu() {
+        pnl_credits.SetActive(false);
+        pnl_settings.SetActive(false);
+        pnl_mainMenu.SetActive(true);
+    }
+
+    public void OpenCredits()
+    {
+        pnl_credits.SetActive(true);
+        pnl_settings.SetActive(false);
+        pnl_mainMenu.SetActive(false);
+    }
+
+    public void OpenSettings()
+    {
+        pnl_credits.SetActive(false);
+        pnl_settings.SetActive(true);
+        pnl_mainMenu.SetActive(false);
+    }
+
+    public void QuitGame() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    public void StartGame() {
+        //Enable Player Input
+        SceneManager.LoadScene("GameScene");
     }
 }
