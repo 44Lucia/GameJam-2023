@@ -28,7 +28,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             ""id"": ""1a079dc0-0fa8-4eb2-82f8-934193cc6a90"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""MovePlayer1"",
                     ""type"": ""PassThrough"",
                     ""id"": ""0e8f4c6d-d912-4ce5-98d7-60848098cbf1"",
                     ""expectedControlType"": ""Vector2"",
@@ -37,10 +37,10 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""cef2a450-8ff6-4db5-84fb-59f4a5e2517c"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""MovePlayer2"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""bc332a15-e0df-4b5c-aaa7-dcc2736a291e"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -48,13 +48,13 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""WS"",
                     ""id"": ""5a07df7d-8714-4c5c-90ad-e6445b7dc5b6"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MovePlayer1"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -65,7 +65,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MovePlayer1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -76,42 +76,42 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MovePlayer1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""880c164e-4858-4de1-a154-0e520d0ce165"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""WS"",
+                    ""id"": ""e38f11d4-fdea-4ef3-bf5d-c7d520c3d383"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""1a76dd88-d378-4d5b-92ed-1553ed1e99cf"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8b55bb2f-050e-4931-aa0c-e49f33f8d345"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
+                    ""action"": ""MovePlayer2"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f649f953-eb62-4c74-936f-21be5da5d1ef"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovePlayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ce0130d5-7c27-49b5-8419-a3566ca2e8f2"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovePlayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -148,8 +148,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
 }");
         // Character
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
-        m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
-        m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
+        m_Character_MovePlayer1 = m_Character.FindAction("MovePlayer1", throwIfNotFound: true);
+        m_Character_MovePlayer2 = m_Character.FindAction("MovePlayer2", throwIfNotFound: true);
         // Navigation
         m_Navigation = asset.FindActionMap("Navigation", throwIfNotFound: true);
         m_Navigation_Newaction = m_Navigation.FindAction("New action", throwIfNotFound: true);
@@ -212,14 +212,14 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     // Character
     private readonly InputActionMap m_Character;
     private ICharacterActions m_CharacterActionsCallbackInterface;
-    private readonly InputAction m_Character_Move;
-    private readonly InputAction m_Character_Jump;
+    private readonly InputAction m_Character_MovePlayer1;
+    private readonly InputAction m_Character_MovePlayer2;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
         public CharacterActions(@GameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Character_Move;
-        public InputAction @Jump => m_Wrapper.m_Character_Jump;
+        public InputAction @MovePlayer1 => m_Wrapper.m_Character_MovePlayer1;
+        public InputAction @MovePlayer2 => m_Wrapper.m_Character_MovePlayer2;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,22 +229,22 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_CharacterActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMove;
-                @Jump.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
+                @MovePlayer1.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovePlayer1;
+                @MovePlayer1.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovePlayer1;
+                @MovePlayer1.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovePlayer1;
+                @MovePlayer2.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovePlayer2;
+                @MovePlayer2.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovePlayer2;
+                @MovePlayer2.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovePlayer2;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
+                @MovePlayer1.started += instance.OnMovePlayer1;
+                @MovePlayer1.performed += instance.OnMovePlayer1;
+                @MovePlayer1.canceled += instance.OnMovePlayer1;
+                @MovePlayer2.started += instance.OnMovePlayer2;
+                @MovePlayer2.performed += instance.OnMovePlayer2;
+                @MovePlayer2.canceled += instance.OnMovePlayer2;
             }
         }
     }
@@ -284,8 +284,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     public NavigationActions @Navigation => new NavigationActions(this);
     public interface ICharacterActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
+        void OnMovePlayer1(InputAction.CallbackContext context);
+        void OnMovePlayer2(InputAction.CallbackContext context);
     }
     public interface INavigationActions
     {

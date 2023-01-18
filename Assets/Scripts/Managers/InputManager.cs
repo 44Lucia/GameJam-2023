@@ -8,11 +8,11 @@ public class InputManager : MonoBehaviour
     private GameInput playerInput;
     public static InputManager _INPUT_MANAGER;
 
-    //Jump
-    private float timeSinceJumppPressed = 0f;
+    //Movement Player 1
+    private Vector2 currentMovementPlayer1Input;
 
-    //Movement
-    private Vector2 currentMovementInput;
+    //Movement Player 2
+    private Vector2 currentMovementPlayer2Input;
 
     private void Awake()
     {
@@ -25,8 +25,8 @@ public class InputManager : MonoBehaviour
             playerInput = new GameInput();
             playerInput.Character.Enable();
 
-            playerInput.Character.Jump.performed += JumpButtonPressed;
-            playerInput.Character.Move.performed += LeftAxisUpdate;
+            playerInput.Character.MovePlayer1.performed += LeftAxisUpdate;
+            playerInput.Character.MovePlayer2.performed += LeftAxisUpdate2;
 
             _INPUT_MANAGER = this;
             DontDestroyOnLoad(this);
@@ -35,22 +35,20 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        timeSinceJumppPressed += Time.deltaTime;
-
         InputSystem.Update();
-    }
-
-    private void JumpButtonPressed(InputAction.CallbackContext context)
-    {
-        timeSinceJumppPressed = 0f;
     }
 
     private void LeftAxisUpdate(InputAction.CallbackContext context)
     {
-        currentMovementInput = context.ReadValue<Vector2>();
+        currentMovementPlayer1Input = context.ReadValue<Vector2>();
     }
 
-    public bool GetSouthButtonPressed() => this.timeSinceJumppPressed == 0f;
+    private void LeftAxisUpdate2(InputAction.CallbackContext context)
+    {
+        currentMovementPlayer2Input = context.ReadValue<Vector2>();
+    }
 
-    public Vector3 GetMovementButtonPressed() => this.currentMovementInput;
+    public Vector3 GetMovementButtonPressed() => this.currentMovementPlayer1Input;
+
+    public Vector3 GetMovement2ButtonPressed() => this.currentMovementPlayer2Input;
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player2Controller : MonoBehaviour
 {
     [Header("Manager")]
     private InputManager input;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         //GetAxis: calcular velocidad de X y Z
-        direction = new Vector3(direction.x, input.GetMovementButtonPressed().y, direction.z);
+        direction = new Vector3(direction.x, input.GetMovement2ButtonPressed().y, direction.z);
         direction.Normalize();
 
         //Velocidad final XZ
