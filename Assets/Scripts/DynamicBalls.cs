@@ -12,6 +12,8 @@ public class DynamicBalls : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float maxPositionOffset;
 
+    private Animator anim;
+
     private void Awake()
     {
         //Instantiate max positions
@@ -21,6 +23,8 @@ public class DynamicBalls : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        anim = GetComponent<Animator>();
+
         //Set Max Positions
         upMaxPosition.transform.position = this.transform.position;
         upMaxPosition.transform.rotation = this.transform.rotation;
