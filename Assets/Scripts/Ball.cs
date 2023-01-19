@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-
-    private Vector3 finalVelocity;
-    private float speed;
     private Rigidbody2D rb;
+    private Animator animator;
+
     [SerializeField] private float initialForce;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
     // Start is called before the first frame update
@@ -25,5 +25,13 @@ public class Ball : MonoBehaviour
     {
            
     }*/
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //bounce
+        animator.SetBool("Idle", false);
+    }
+
+    public void SetAnimatorIdleToTrue() { animator.SetBool("Idle", true); }
 
 }
