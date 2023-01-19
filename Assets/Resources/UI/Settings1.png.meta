@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f95847aebb466e47b939edddc2179ce
+guid: e977d59603dacd347b5b40544a0f9538
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PLAY_0
+      name: Settings1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57fbfd742ba90ae4c995ff5b32a07cef
-      internalID: -803653604
+      spriteID: d1286030735a56c4097335b3a5b36fe8
+      internalID: -583787788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PLAY_1
+      name: Settings1_1
       rect:
         serializedVersion: 2
         x: 0
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5735acd92c063e4eb740f3b1843e610
-      internalID: -1092544136
+      spriteID: 8664bcfd0494a2340946ea2d22e26113
+      internalID: 275474618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PLAY_2
+      name: Settings1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a1b371c2b2c6cc4fa22e6a31ea19e3d
-      internalID: 484214522
+      spriteID: fbb87b07d22a19243b358a1823df453a
+      internalID: -1109609725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PLAY_3
+      name: Settings1_3
       rect:
         serializedVersion: 2
         x: 0
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 332cb44fffed6764bb28e073fb873086
-      internalID: 1662229224
+      spriteID: 306d7008c8a58ee44b436c769b40fdf3
+      internalID: 1644297062
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PLAY_1: -1092544136
-      PLAY_0: -803653604
-      PLAY_3: 1662229224
-      PLAY_2: 484214522
+      Settings1_1: 275474618
+      Settings1_0: -583787788
+      Settings1_2: -1109609725
+      Settings1_3: 1644297062
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
