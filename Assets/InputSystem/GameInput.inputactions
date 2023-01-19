@@ -33,9 +33,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ShootPlayer2Up",
+                    "type": "Button",
+                    "id": "c8a2c826-7166-4ce0-9b40-b3d2c379ca45",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ShootPlayer1Down",
                     "type": "Button",
                     "id": "65b6d2b8-a8df-4e1b-a41d-79717057429f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootPlayer2Down",
+                    "type": "Button",
+                    "id": "7d52ccbb-a533-4cfb-af49-bb5de3e4d25f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
@@ -128,6 +146,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShootPlayer1Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d41a7fa7-3ac9-4567-b91b-df122e7bf2d8",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootPlayer2Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "243c5ad6-ab78-4e59-a829-98dca25993c6",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootPlayer2Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -55,9 +55,27 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ShootPlayer2Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8a2c826-7166-4ce0-9b40-b3d2c379ca45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ShootPlayer1Down"",
                     ""type"": ""Button"",
                     ""id"": ""65b6d2b8-a8df-4e1b-a41d-79717057429f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootPlayer2Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d52ccbb-a533-4cfb-af49-bb5de3e4d25f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
@@ -152,6 +170,28 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""ShootPlayer1Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d41a7fa7-3ac9-4567-b91b-df122e7bf2d8"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootPlayer2Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""243c5ad6-ab78-4e59-a829-98dca25993c6"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootPlayer2Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -191,7 +231,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Character_MovePlayer1 = m_Character.FindAction("MovePlayer1", throwIfNotFound: true);
         m_Character_MovePlayer2 = m_Character.FindAction("MovePlayer2", throwIfNotFound: true);
         m_Character_ShootPlayer1Up = m_Character.FindAction("ShootPlayer1Up", throwIfNotFound: true);
+        m_Character_ShootPlayer2Up = m_Character.FindAction("ShootPlayer2Up", throwIfNotFound: true);
         m_Character_ShootPlayer1Down = m_Character.FindAction("ShootPlayer1Down", throwIfNotFound: true);
+        m_Character_ShootPlayer2Down = m_Character.FindAction("ShootPlayer2Down", throwIfNotFound: true);
         // Navigation
         m_Navigation = asset.FindActionMap("Navigation", throwIfNotFound: true);
         m_Navigation_Newaction = m_Navigation.FindAction("New action", throwIfNotFound: true);
@@ -257,7 +299,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_MovePlayer1;
     private readonly InputAction m_Character_MovePlayer2;
     private readonly InputAction m_Character_ShootPlayer1Up;
+    private readonly InputAction m_Character_ShootPlayer2Up;
     private readonly InputAction m_Character_ShootPlayer1Down;
+    private readonly InputAction m_Character_ShootPlayer2Down;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
@@ -265,7 +309,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @MovePlayer1 => m_Wrapper.m_Character_MovePlayer1;
         public InputAction @MovePlayer2 => m_Wrapper.m_Character_MovePlayer2;
         public InputAction @ShootPlayer1Up => m_Wrapper.m_Character_ShootPlayer1Up;
+        public InputAction @ShootPlayer2Up => m_Wrapper.m_Character_ShootPlayer2Up;
         public InputAction @ShootPlayer1Down => m_Wrapper.m_Character_ShootPlayer1Down;
+        public InputAction @ShootPlayer2Down => m_Wrapper.m_Character_ShootPlayer2Down;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,9 +330,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @ShootPlayer1Up.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer1Up;
                 @ShootPlayer1Up.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer1Up;
                 @ShootPlayer1Up.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer1Up;
+                @ShootPlayer2Up.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Up;
+                @ShootPlayer2Up.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Up;
+                @ShootPlayer2Up.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Up;
                 @ShootPlayer1Down.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer1Down;
                 @ShootPlayer1Down.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer1Down;
                 @ShootPlayer1Down.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer1Down;
+                @ShootPlayer2Down.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Down;
+                @ShootPlayer2Down.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Down;
+                @ShootPlayer2Down.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Down;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -300,9 +352,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @ShootPlayer1Up.started += instance.OnShootPlayer1Up;
                 @ShootPlayer1Up.performed += instance.OnShootPlayer1Up;
                 @ShootPlayer1Up.canceled += instance.OnShootPlayer1Up;
+                @ShootPlayer2Up.started += instance.OnShootPlayer2Up;
+                @ShootPlayer2Up.performed += instance.OnShootPlayer2Up;
+                @ShootPlayer2Up.canceled += instance.OnShootPlayer2Up;
                 @ShootPlayer1Down.started += instance.OnShootPlayer1Down;
                 @ShootPlayer1Down.performed += instance.OnShootPlayer1Down;
                 @ShootPlayer1Down.canceled += instance.OnShootPlayer1Down;
+                @ShootPlayer2Down.started += instance.OnShootPlayer2Down;
+                @ShootPlayer2Down.performed += instance.OnShootPlayer2Down;
+                @ShootPlayer2Down.canceled += instance.OnShootPlayer2Down;
             }
         }
     }
@@ -345,7 +403,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnMovePlayer1(InputAction.CallbackContext context);
         void OnMovePlayer2(InputAction.CallbackContext context);
         void OnShootPlayer1Up(InputAction.CallbackContext context);
+        void OnShootPlayer2Up(InputAction.CallbackContext context);
         void OnShootPlayer1Down(InputAction.CallbackContext context);
+        void OnShootPlayer2Down(InputAction.CallbackContext context);
     }
     public interface INavigationActions
     {

@@ -13,6 +13,7 @@ public class DynamicBalls : MonoBehaviour
     [SerializeField] private float maxPositionOffset;
 
     private Animator anim;
+    private SpriteRenderer sprRender;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class DynamicBalls : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        sprRender = GetComponent<SpriteRenderer>();
 
         //Set Max Positions
         upMaxPosition.transform.position = this.transform.position;
@@ -44,10 +46,12 @@ public class DynamicBalls : MonoBehaviour
 
         if (yDirection == 1 && transform.position.y >= upMaxPosition.transform.position.y) 
         {
+            sprRender.flipY = true;
             yDirection = -1;
         }
         if (yDirection == -1 && transform.position.y <= downMaxPosition.transform.position.y)
         {
+            sprRender.flipY = false;
             yDirection = 1;
         }
     }

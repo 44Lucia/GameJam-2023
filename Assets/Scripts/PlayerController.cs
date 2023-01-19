@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [Header("Manager")]
     private InputManager input;
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("PlayerParameters")]
     [SerializeField] private float speed;
     private float maxSpeed;
+    [SerializeField] private Transform initPos;
 
     [Header("Flippers")]
     [SerializeField] private Rigidbody2D armUp;
@@ -26,6 +27,11 @@ public class PlayerController : MonoBehaviour
     [Header("Max Position")]
     [SerializeField] private float bottomMaxPosition;
     [SerializeField] private float topMaxPosition;
+
+    private void Awake()
+    {
+        base.Awake();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -87,5 +93,12 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("At max position");
             finalVelocity.y = 0;
         }
+    }
+
+    public void SetInitPosition()
+    {
+        player.enabled = false;
+        player.transform.position = initPos.position;
+        player.enabled = true;
     }
 }

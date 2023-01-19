@@ -35,9 +35,11 @@ public class InputManager : MonoBehaviour
 
             playerInput.Character.MovePlayer1.performed += LeftAxisUpdate;
             playerInput.Character.ShootPlayer1Up.performed += ShootPlayer1UpUpdate;
-            playerInput.Character.ShootPlayer1Down.performed += ShootPlayer1DowUpdate;
+            playerInput.Character.ShootPlayer1Down.performed += ShootPlayer1DownUpdate;
 
             playerInput.Character.MovePlayer2.performed += LeftAxisUpdate2;
+            playerInput.Character.ShootPlayer2Up.performed += ShootPlayer2UpUpdate;
+            playerInput.Character.ShootPlayer2Down.performed += ShootPlayer2DownUpdate;
 
             _INPUT_MANAGER = this;
             DontDestroyOnLoad(this);
@@ -61,7 +63,7 @@ public class InputManager : MonoBehaviour
         isShootingUpPlayer1 = !isShootingUpPlayer1;
     }
 
-    private void ShootPlayer1DowUpdate(InputAction.CallbackContext context)
+    private void ShootPlayer1DownUpdate(InputAction.CallbackContext context)
     {
         isShootingDownPlayer1 = !isShootingDownPlayer1;
     }
@@ -74,6 +76,16 @@ public class InputManager : MonoBehaviour
         currentMovementPlayer2Input = context.ReadValue<Vector2>();
     }
 
+    private void ShootPlayer2UpUpdate(InputAction.CallbackContext context)
+    {
+        isShootingUpPlayer2 = !isShootingUpPlayer2;
+    }
+
+    private void ShootPlayer2DownUpdate(InputAction.CallbackContext context)
+    {
+        isShootingDownPlayer2 = !isShootingDownPlayer2;
+    }
+
     //Player 1
     public Vector3 GetMovementButtonPressed() => this.currentMovementPlayer1Input;
     public bool GetIsShootingUpPlayer1Pressed() => this.isShootingUpPlayer1 == true;
@@ -81,4 +93,6 @@ public class InputManager : MonoBehaviour
 
     //Player 2
     public Vector3 GetMovement2ButtonPressed() => this.currentMovementPlayer2Input;
+    public bool GetIsShootingUpPlayer2Pressed() => this.isShootingUpPlayer2 == true;
+    public bool GetIsShootingDownPlayer2Pressed() => this.isShootingDownPlayer2 == true;
 }
