@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        rb.AddForce(transform.right * initialForce);
+        rb.AddForce(-transform.right * initialForce);
     }
 
     // Update is called once per frame
