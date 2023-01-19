@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,12 +20,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D armUp;
     [SerializeField] private Rigidbody2D armDown;
 
+    [Header("Colliders")]
+    [SerializeField] private GameObject tilemapCollisionGO;
+
+    [Header("Max Position")]
+    [SerializeField] private float bottomMaxPosition;
+    [SerializeField] private float topMaxPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         input = InputManager._INPUT_MANAGER;
 
         player = GetComponent<CharacterController>();
+
+        //Ignore collision between flippers and tilemap collider
+        Physics2D.IgnoreCollision(tilemapCollisionGO.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(tilemapCollisionGO.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
 
         //Default values movement
         finalVelocity = Vector3.zero;
@@ -40,16 +52,16 @@ public class PlayerController : MonoBehaviour
 
         if (input.GetIsShootingUpPlayer1Pressed())
         {
-            armUp.AddTorque(1000);
+            armUp.AddTorque(100000);
         }
-        else { armUp.AddTorque(-1000); }
+        else { armUp.AddTorque(-100000); }
 
         if (input.GetIsShootingDownPlayer1Pressed())
         {
             armDown.gravityScale = 1;
-            armDown.AddTorque(-1000);
+            armDown.AddTorque(-100000);
         }
-        else { armDown.gravityScale = 0; armDown.AddTorque(1000); }
+        else { armDown.gravityScale = 0; armDown.AddTorque(100000); }
 
         player.Move(finalVelocity * Time.deltaTime);
     }
@@ -60,7 +72,20 @@ public class PlayerController : MonoBehaviour
         direction = new Vector3(direction.x, input.GetMovementButtonPressed().y, direction.z);
         direction.Normalize();
 
-        //Velocidad final XZ
+        //Velocidad final Y
         finalVelocity.y = direction.y * speed;
+
+
+        //Clamp position
+        if (finalVelocity.y > 0 && transform.position.y >= topMaxPosition) // Going up
+        {
+            //Debug.Log("At max position");
+            finalVelocity.y = 0;
+        }
+        else if (finalVelocity.y < 0 && transform.position.y <= bottomMaxPosition) // Going down
+        {
+            //Debug.Log("At max position");
+            finalVelocity.y = 0;
+        }
     }
 }
