@@ -28,6 +28,7 @@ public class Goal : Singleton<Goal>
             SoundManager.Instance.PlayOnce(AudioClipName.POINT);
             GameManager._GAME_MANAGER.addPointsPlayer1(1);
             PlayerController.Instance.SetInitPosition();
+            Ball.Instance.SetTargetIsPlayer2(true);
             StartCoroutine(SetBallPosition());
         }
 
@@ -36,6 +37,7 @@ public class Goal : Singleton<Goal>
             SoundManager.Instance.PlayOnce(AudioClipName.POINT);
             GameManager._GAME_MANAGER.addPointsPlayer2(1);
             Player2Controller.Instance.SetInitPosition();
+            Ball.Instance.SetTargetIsPlayer2(false);
             StartCoroutine(SetBallPosition());
         }
     }

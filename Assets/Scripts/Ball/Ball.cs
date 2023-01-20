@@ -55,6 +55,8 @@ public class Ball : Singleton<Ball>
         this.transform.position = currentInitPos.position;
     }
 
+    public void SetTargetIsPlayer2(bool _targetIsPlayer2) { targetIsPlayer2 = _targetIsPlayer2; }
+
     public void SetAnimatorIdleToTrue() { animator.SetBool("Idle", true); }
 
 }
