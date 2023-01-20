@@ -9,6 +9,8 @@ public class Goal : Singleton<Goal>
 
     [SerializeField] private GameObject canvasPlayer1;
     [SerializeField] private GameObject canvasPlayer2;
+    [SerializeField] private GameObject canvasDrawPlayers;
+
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class Goal : Singleton<Goal>
     {
         canvasPlayer1.SetActive(false);
         canvasPlayer2.SetActive(false);
+        canvasDrawPlayers.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,4 +53,6 @@ public class Goal : Singleton<Goal>
 
     public GameObject SetCanvasWinPlayer1 { get => canvasPlayer1; set => canvasPlayer1 = value; }
     public GameObject SetCanvasWinPlayer2 { get => canvasPlayer2; set => canvasPlayer2 = value; }
+    public GameObject SetCanvasDrawPlayers { get => canvasDrawPlayers; set => canvasDrawPlayers = value; }
+
 }

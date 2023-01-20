@@ -24,6 +24,10 @@ public class TimerUI : MonoBehaviour
             {
                 GameManager._GAME_MANAGER.player2Win();
             }
+            if (GameManager._GAME_MANAGER.GetScorePlayer2 == GameManager._GAME_MANAGER.GetScorePlayer1)
+            {
+                GameManager._GAME_MANAGER.drawPlayers();
+            }
         }
     }
 
