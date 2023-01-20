@@ -31,6 +31,7 @@ public class Goal : Singleton<Goal>
             SoundManager.Instance.PlayOnce(AudioClipName.POINT);
             GameManager._GAME_MANAGER.addPointsPlayer1(1);
             PlayerController.Instance.SetInitPosition();
+            Ball.Instance.SetVisibility(false);
             Ball.Instance.SetTargetIsPlayer2(true);
             StartCoroutine(SetBallPosition());
         }
@@ -40,6 +41,7 @@ public class Goal : Singleton<Goal>
             SoundManager.Instance.PlayOnce(AudioClipName.POINT);
             GameManager._GAME_MANAGER.addPointsPlayer2(1);
             Player2Controller.Instance.SetInitPosition();
+            Ball.Instance.SetVisibility(false);
             Ball.Instance.SetTargetIsPlayer2(false);
             StartCoroutine(SetBallPosition());
         }
@@ -48,7 +50,9 @@ public class Goal : Singleton<Goal>
     public IEnumerator SetBallPosition()
     {
         yield return new WaitForSeconds(1.5f);
+        Ball.Instance.SetVisibility(true);
         Ball.Instance.SetInitPosition();
+        Debug.Log("BALL RESET");
     }
 
     public GameObject SetCanvasWinPlayer1 { get => canvasPlayer1; set => canvasPlayer1 = value; }
