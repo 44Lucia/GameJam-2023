@@ -11,7 +11,10 @@ public class FirstButton : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        ActivateButton();
+        if (initButton != null)
+        {
+            ActivateButton();
+        }
     }
 
     void ActivateButton()
