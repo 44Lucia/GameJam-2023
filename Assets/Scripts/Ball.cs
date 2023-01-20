@@ -22,15 +22,10 @@ public class Ball : Singleton<Ball>
         rb.AddForce(-transform.right * initialForce);
     }
 
-    // Update is called once per frame
-    /*private void Update()
-    {
-           
-    }*/
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //bounce
+        SoundManager.Instance.PlayOnce(AudioClipName.BOUNCE_BALL);
         animator.SetBool("Idle", false);
     }
 

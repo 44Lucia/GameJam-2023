@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
     private GameInput playerInput;
     public static InputManager _INPUT_MANAGER;
+
+    //PauseMenu
+    private UnityEvent scapePressed;
 
     //Movement Player 1
     private Vector2 currentMovementPlayer1Input;
@@ -37,6 +41,8 @@ public class InputManager : MonoBehaviour
             playerInput.Character.ShootPlayer1Up.performed += ShootPlayer1UpUpdate;
             playerInput.Character.ShootPlayer1Down.performed += ShootPlayer1DownUpdate;
 
+            playerInput.Character.PauseMenu.performed += PauseMenuPressedCallback;
+
             playerInput.Character.MovePlayer2.performed += LeftAxisUpdate2;
             playerInput.Character.ShootPlayer2Up.performed += ShootPlayer2UpUpdate;
             playerInput.Character.ShootPlayer2Down.performed += ShootPlayer2DownUpdate;
@@ -44,11 +50,18 @@ public class InputManager : MonoBehaviour
             _INPUT_MANAGER = this;
             DontDestroyOnLoad(this);
         }
+
+        scapePressed = new UnityEvent();
     }
 
     private void Update()
     {
         InputSystem.Update();
+    }
+
+    private void PauseMenuPressedCallback(InputAction.CallbackContext context)
+    {
+        scapePressed.Invoke();
     }
 
     //Player 1
@@ -85,6 +98,10 @@ public class InputManager : MonoBehaviour
     {
         isShootingDownPlayer2 = !isShootingDownPlayer2;
     }
+
+    public void AddListennerToPressScape(UnityAction action){ scapePressed.AddListener(action); }
+
+    public void RemoveListennerToPressScape(UnityAction action){ scapePressed.RemoveListener(action); }
 
     //Player 1
     public Vector3 GetMovementButtonPressed() => this.currentMovementPlayer1Input;

@@ -18,7 +18,16 @@ public class Player2Controller : Singleton<Player2Controller>
 
     [Header("Flippers")]
     [SerializeField] private Rigidbody2D armUp;
+    private int timerArmUp;
     [SerializeField] private Rigidbody2D armDown;
+    private int timerArmDown;
+
+    [Header("Colliders")]
+    [SerializeField] private GameObject tilemapCollisionGO;
+
+    [Header("Max Position")]
+    [SerializeField] private float bottomMaxPosition;
+    [SerializeField] private float topMaxPosition;
 
     private void Awake()
     {
@@ -32,8 +41,14 @@ public class Player2Controller : Singleton<Player2Controller>
 
         player = GetComponent<CharacterController>();
 
+        //Ignore collision between flippers and tilemap collider
+        Physics2D.IgnoreCollision(tilemapCollisionGO.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(tilemapCollisionGO.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
+
         //Default values movement
         finalVelocity = Vector3.zero;
+        timerArmDown = 0;
+        timerArmDown = 0;
         armDown.gravityScale = 0;
         if (speed == 0f) { speed = 1f; }
         if (maxSpeed == 0f) { maxSpeed = 15f; }
@@ -46,19 +61,25 @@ public class Player2Controller : Singleton<Player2Controller>
 
         if (input.GetIsShootingUpPlayer2Pressed())
         {
+            if (timerArmUp == 0) { SoundAttack(); }
+            timerArmUp++;
             armUp.AddTorque(-1000);
         }
-        else { armUp.AddTorque(1000); }
+        else { armUp.AddTorque(1000); timerArmUp = 0; }
 
         if (input.GetIsShootingDownPlayer2Pressed())
         {
+            if (timerArmDown == 0) { SoundAttack(); }
+            timerArmDown++;
             armDown.gravityScale = 1;
             armDown.AddTorque(1000);
         }
-        else { armDown.gravityScale = 0; armDown.AddTorque(-1000); }
+        else { armDown.gravityScale = 0; armDown.AddTorque(-1000); timerArmDown = 0; }
 
         player.Move(finalVelocity * Time.deltaTime);
     }
+
+    private void SoundAttack() { SoundManager.Instance.PlayOnce(AudioClipName.PLAYER_ATTACK); }
 
     private void Move()
     {
@@ -68,6 +89,18 @@ public class Player2Controller : Singleton<Player2Controller>
 
         //Velocidad final XZ
         finalVelocity.y = direction.y * speed;
+
+        //Clamp position
+        if (finalVelocity.y > 0 && transform.position.y >= topMaxPosition) // Going up
+        {
+            //Debug.Log("At max position");
+            finalVelocity.y = 0;
+        }
+        else if (finalVelocity.y < 0 && transform.position.y <= bottomMaxPosition) // Going down
+        {
+            //Debug.Log("At max position");
+            finalVelocity.y = 0;
+        }
     }
 
     public void SetInitPosition() 

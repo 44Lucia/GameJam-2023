@@ -80,6 +80,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""55045d56-1a03-4928-a613-4bcc4f9b1c38"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,28 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""ShootPlayer2Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3664a21-3dac-4c74-a7e4-404bc18e5714"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f59cfd39-c6ed-48cd-abf0-ce7d0a9d64b9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -234,6 +265,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Character_ShootPlayer2Up = m_Character.FindAction("ShootPlayer2Up", throwIfNotFound: true);
         m_Character_ShootPlayer1Down = m_Character.FindAction("ShootPlayer1Down", throwIfNotFound: true);
         m_Character_ShootPlayer2Down = m_Character.FindAction("ShootPlayer2Down", throwIfNotFound: true);
+        m_Character_PauseMenu = m_Character.FindAction("PauseMenu", throwIfNotFound: true);
         // Navigation
         m_Navigation = asset.FindActionMap("Navigation", throwIfNotFound: true);
         m_Navigation_Newaction = m_Navigation.FindAction("New action", throwIfNotFound: true);
@@ -302,6 +334,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ShootPlayer2Up;
     private readonly InputAction m_Character_ShootPlayer1Down;
     private readonly InputAction m_Character_ShootPlayer2Down;
+    private readonly InputAction m_Character_PauseMenu;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
@@ -312,6 +345,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @ShootPlayer2Up => m_Wrapper.m_Character_ShootPlayer2Up;
         public InputAction @ShootPlayer1Down => m_Wrapper.m_Character_ShootPlayer1Down;
         public InputAction @ShootPlayer2Down => m_Wrapper.m_Character_ShootPlayer2Down;
+        public InputAction @PauseMenu => m_Wrapper.m_Character_PauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +373,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @ShootPlayer2Down.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Down;
                 @ShootPlayer2Down.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Down;
                 @ShootPlayer2Down.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnShootPlayer2Down;
+                @PauseMenu.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseMenu;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -361,6 +398,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @ShootPlayer2Down.started += instance.OnShootPlayer2Down;
                 @ShootPlayer2Down.performed += instance.OnShootPlayer2Down;
                 @ShootPlayer2Down.canceled += instance.OnShootPlayer2Down;
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
             }
         }
     }
@@ -406,6 +446,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnShootPlayer2Up(InputAction.CallbackContext context);
         void OnShootPlayer1Down(InputAction.CallbackContext context);
         void OnShootPlayer2Down(InputAction.CallbackContext context);
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
     public interface INavigationActions
     {

@@ -19,7 +19,9 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Flippers")]
     [SerializeField] private Rigidbody2D armUp;
+    private int timerArmUp;
     [SerializeField] private Rigidbody2D armDown;
+    private int timerArmDown;
 
     [Header("Colliders")]
     [SerializeField] private GameObject tilemapCollisionGO;
@@ -46,6 +48,8 @@ public class PlayerController : Singleton<PlayerController>
 
         //Default values movement
         finalVelocity = Vector3.zero;
+        timerArmDown = 0;
+        timerArmDown = 0;
         armDown.gravityScale = 0;
         if (speed == 0f) { speed = 1f; }
         if (maxSpeed == 0f) { maxSpeed = 15f; }
@@ -58,19 +62,25 @@ public class PlayerController : Singleton<PlayerController>
 
         if (input.GetIsShootingUpPlayer1Pressed())
         {
+            if (timerArmUp == 0){ SoundAttack(); }
+            timerArmUp++;
             armUp.AddTorque(100000);
         }
-        else { armUp.AddTorque(-100000); }
+        else { armUp.AddTorque(-100000); timerArmUp = 0; }
 
         if (input.GetIsShootingDownPlayer1Pressed())
         {
+            if (timerArmDown == 0){ SoundAttack(); }
+            timerArmDown++;
             armDown.gravityScale = 1;
             armDown.AddTorque(-100000);
         }
-        else { armDown.gravityScale = 0; armDown.AddTorque(100000); }
+        else { armDown.gravityScale = 0; armDown.AddTorque(100000); timerArmDown = 0; }
 
         player.Move(finalVelocity * Time.deltaTime);
     }
+
+    private void SoundAttack() { SoundManager.Instance.PlayOnce(AudioClipName.PLAYER_ATTACK); }
 
     private void Move()
     {

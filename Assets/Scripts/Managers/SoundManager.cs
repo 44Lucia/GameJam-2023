@@ -4,20 +4,26 @@ using UnityEngine;
 
 public enum AudioClipName
 {
-    CLICK_MENU, HOVER_MENU, LAST_NO_USE
+    CLICK_MENU, HOVER_MENU, PLAYER_ATTACK, POINT, BOUNCE_BALL ,LAST_NO_USE
 }
 
 public enum SCENE { MAIN_MENU, PAUSE_MENU, LEVEL, VICTORY, LAST_NO_USE }
 
 public enum BackGroundClipName
 {
-    MUSIC_1, MUSIC_2, MUSIC_3, MUSIC_4, LAST_NO_USE
+    MUSIC_1, MUSIC_2, LAST_NO_USE
 }
 
 public class SoundManager : MonoBehaviour
 {
     [Range(0.0F, 1.0F)]
     [SerializeField] float m_clickMenu = 1;
+    [Range(0.0F, 1.0F)]
+    [SerializeField] float m_playerAttack = 1;
+    [Range(0.0F, 1.0F)]
+    [SerializeField] float m_bounceBall = 1;
+    [Range(0.0F, 1.0F)]
+    [SerializeField] float m_point = 1;
     [Range(0.0F, 1.0F)]
     [SerializeField] float m_backgroundSound = 1;
     [Range(0.0F, 1.0F)]
@@ -70,25 +76,27 @@ public class SoundManager : MonoBehaviour
         m_audioClips = new AudioClip[(int)AudioClipName.LAST_NO_USE];
         m_audioClips[(int)AudioClipName.CLICK_MENU] = Resources.Load<AudioClip>("Sound/ClickMenuSFX");
         m_audioClips[(int)AudioClipName.HOVER_MENU] = Resources.Load<AudioClip>("Sound/HoverSFX");
+        m_audioClips[(int)AudioClipName.PLAYER_ATTACK] = Resources.Load<AudioClip>("Sound/PlayerAttackSFX");
+        m_audioClips[(int)AudioClipName.POINT] = Resources.Load<AudioClip>("Sound/PointSFX");
+        m_audioClips[(int)AudioClipName.BOUNCE_BALL] = Resources.Load<AudioClip>("Sound/BounceBallSFX");
 
         // SAVE ALL THE VOLUMES SET IN THE INSPECTOR TO AN ARRAY
         m_volumeEffects = new float[(int)AudioClipName.LAST_NO_USE];
         m_volumeEffects[(int)AudioClipName.CLICK_MENU] = m_clickMenu;
         m_volumeEffects[(int)AudioClipName.HOVER_MENU] = m_hoverMenu;
+        m_volumeEffects[(int)AudioClipName.PLAYER_ATTACK] = m_playerAttack;
+        m_volumeEffects[(int)AudioClipName.POINT] = m_point;
+        m_volumeEffects[(int)AudioClipName.BOUNCE_BALL] = m_bounceBall;
 
         // LOAD ALL THE MUSIC CLIPS
         m_backgroundMusic = new AudioClip[(int)BackGroundClipName.LAST_NO_USE];
-        m_backgroundMusic[(int)BackGroundClipName.MUSIC_1] = Resources.Load<AudioClip>("Sound/BackgroundSound2");
-        m_backgroundMusic[(int)BackGroundClipName.MUSIC_2] = Resources.Load<AudioClip>("Sound/BackgroundSound2");
-        m_backgroundMusic[(int)BackGroundClipName.MUSIC_3] = Resources.Load<AudioClip>("Sound/victoria");
-        m_backgroundMusic[(int)BackGroundClipName.MUSIC_4] = Resources.Load<AudioClip>("Sound/derrota");
+        m_backgroundMusic[(int)BackGroundClipName.MUSIC_1] = Resources.Load<AudioClip>("Sound/BackgroundSoundMenu");
+        m_backgroundMusic[(int)BackGroundClipName.MUSIC_2] = Resources.Load<AudioClip>("Sound/BackgroundSoundInGame");
 
         // SAVE ALL THE VOLUMES SET IN THE INSPECTOR TO AN ARRAY
         m_volumeBackground = new float[(int)SCENE.LAST_NO_USE];
         m_volumeBackground[(int)BackGroundClipName.MUSIC_1] = m_backgroundSound;
         m_volumeBackground[(int)BackGroundClipName.MUSIC_2] = m_backgroundSound2;
-        m_volumeBackground[(int)BackGroundClipName.MUSIC_3] = m_backgroundSound3;
-        m_volumeBackground[(int)BackGroundClipName.MUSIC_4] = m_backgroundSound4;
     }
 
     public void PlayOnce(AudioClipName p_name)
