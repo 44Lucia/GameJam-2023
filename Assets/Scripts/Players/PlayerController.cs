@@ -76,18 +76,18 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (timerArmUp == 0){ SoundAttack(); }
             timerArmUp++;
-            armUp.AddTorque(1000000);
+            armUp.AddTorque(10000000);
         }
-        else { armUp.AddTorque(-1000000); timerArmUp = 0; }
+        else { armUp.AddTorque(-10000000); timerArmUp = 0; }
 
         if (input.GetIsShootingDownPlayer1Pressed())
         {
             if (timerArmDown == 0){ SoundAttack(); }
             timerArmDown++;
             armDown.gravityScale = 1;
-            armDown.AddTorque(-1000000);
+            armDown.AddTorque(-10000000);
         }
-        else { armDown.gravityScale = 0; armDown.AddTorque(1000000); timerArmDown = 0; }
+        else { armDown.gravityScale = 0; armDown.AddTorque(10000000); timerArmDown = 0; }
 
         player.Move(finalVelocity * Time.deltaTime);
     }
