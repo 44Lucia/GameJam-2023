@@ -22,6 +22,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void player1Win() 
+    {
+        Goal.Instance.SetCanvasWinPlayer1.SetActive(true);
+    }
+
+    public void player2Win()
+    {
+        Goal.Instance.SetCanvasWinPlayer2.SetActive(true);
+    }
+
     public void addPointsPlayer1(int value) 
     {
         scorePlayer1 += value;

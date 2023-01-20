@@ -14,6 +14,17 @@ public class TimerUI : MonoBehaviour
     {
         setTimerTime(timerTime);
         StartCoroutine(Counter());
+
+        if (timerTime <= 0){
+            if (GameManager._GAME_MANAGER.GetScorePlayer1 > GameManager._GAME_MANAGER.GetScorePlayer2)
+            {
+                GameManager._GAME_MANAGER.player1Win();
+            }
+            if (GameManager._GAME_MANAGER.GetScorePlayer2 > GameManager._GAME_MANAGER.GetScorePlayer1)
+            {
+                GameManager._GAME_MANAGER.player2Win();
+            }
+        }
     }
 
     public void setTimerTime(float time)

@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class Goal : Singleton<Goal>
 {
     [SerializeField] private bool isGoalPlayer1;
-    [SerializeField] private bool isGoalPlayer2;
+    [SerializeField] private bool isGoalPlayer2;    
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject canvasPlayer1;
+    [SerializeField] private GameObject canvasPlayer2;
+
+    private void Awake()
     {
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (isGoalPlayer1)
-        {
-
-        }
+        canvasPlayer1.SetActive(false);
+        canvasPlayer2.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,4 +45,7 @@ public class Goal : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         Ball.Instance.SetInitPosition();
     }
+
+    public GameObject SetCanvasWinPlayer1 { get => canvasPlayer1; set => canvasPlayer1 = value; }
+    public GameObject SetCanvasWinPlayer2 { get => canvasPlayer2; set => canvasPlayer2 = value; }
 }
