@@ -23,7 +23,10 @@ public class Player2Controller : Singleton<Player2Controller>
     private int timerArmDown;
 
     [Header("Colliders")]
-    [SerializeField] private GameObject tilemapCollisionGO;
+    [SerializeField] private GameObject topMapLimit;
+    [SerializeField] private GameObject bottomMapLimit;
+    [SerializeField] private GameObject leftMapLimit;
+    [SerializeField] private GameObject rightMapLimit;
 
     [Header("Max Position")]
     [SerializeField] private float bottomMaxPosition;
@@ -42,8 +45,17 @@ public class Player2Controller : Singleton<Player2Controller>
         player = GetComponent<CharacterController>();
 
         //Ignore collision between flippers and tilemap collider
-        Physics2D.IgnoreCollision(tilemapCollisionGO.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
-        Physics2D.IgnoreCollision(tilemapCollisionGO.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(topMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(topMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
+
+        Physics2D.IgnoreCollision(bottomMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(bottomMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
+
+        Physics2D.IgnoreCollision(leftMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(leftMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
+
+        Physics2D.IgnoreCollision(rightMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(rightMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
 
         //Default values movement
         finalVelocity = Vector3.zero;
@@ -63,18 +75,18 @@ public class Player2Controller : Singleton<Player2Controller>
         {
             if (timerArmUp == 0) { SoundAttack(); }
             timerArmUp++;
-            armUp.AddTorque(-1000);
+            armUp.AddTorque(-1000000);
         }
-        else { armUp.AddTorque(1000); timerArmUp = 0; }
+        else { armUp.AddTorque(1000000); timerArmUp = 0; }
 
         if (input.GetIsShootingDownPlayer2Pressed())
         {
             if (timerArmDown == 0) { SoundAttack(); }
             timerArmDown++;
             armDown.gravityScale = 1;
-            armDown.AddTorque(1000);
+            armDown.AddTorque(1000000);
         }
-        else { armDown.gravityScale = 0; armDown.AddTorque(-1000); timerArmDown = 0; }
+        else { armDown.gravityScale = 0; armDown.AddTorque(-1000000); timerArmDown = 0; }
 
         player.Move(finalVelocity * Time.deltaTime);
     }
