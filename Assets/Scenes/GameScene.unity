@@ -888,10 +888,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
-    - target: {fileID: 3725292121389504277, guid: 2b4463000a6f1784283300ef9ac397d4, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3725292121389504278, guid: 2b4463000a6f1784283300ef9ac397d4, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -937,9 +933,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3725292121389504283, guid: 2b4463000a6f1784283300ef9ac397d4, type: 3}
-      propertyPath: initialForce
-      value: 2000
-      objectReference: {fileID: 0}
+      propertyPath: initPosPlayer1
+      value: 
+      objectReference: {fileID: 747725666}
+    - target: {fileID: 3725292121389504283, guid: 2b4463000a6f1784283300ef9ac397d4, type: 3}
+      propertyPath: initPosPlayer2
+      value: 
+      objectReference: {fileID: 2064405558}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b4463000a6f1784283300ef9ac397d4, type: 3}
 --- !u!1 &621316558
@@ -15568,6 +15568,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742991887}
   m_CullTransparentMesh: 1
+--- !u!1 &747725665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 747725666}
+  m_Layer: 0
+  m_Name: Ball_InitialPos_Player1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &747725666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747725665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &754489336
 GameObject:
   m_ObjectHideFlags: 0
@@ -17707,6 +17738,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033814231}
   m_CullTransparentMesh: 1
+--- !u!1 &2064405557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064405558}
+  m_Layer: 0
+  m_Name: Ball_InitialPos_Player2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064405558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064405557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2109775423
 GameObject:
   m_ObjectHideFlags: 0

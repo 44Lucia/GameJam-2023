@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -705027772, guid: 58f0352c38204bc43aa34c98184a6b30, type: 3}
   m_Color: {r: 0, g: 1, b: 0.08852029, a: 1}
   m_FlipX: 0
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -157,4 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388c92f6eddae2b4daf7334b35d9e95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialForce: 1000
+  initialForce: 350
+  currentInitPos: {fileID: 0}
+  initPosPlayer1: {fileID: 0}
+  initPosPlayer2: {fileID: 0}
+  minRandomDir: -45
+  maxRandomDir: 45
+  targetIsPlayer2: 0
