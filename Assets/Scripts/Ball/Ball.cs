@@ -59,4 +59,6 @@ public class Ball : Singleton<Ball>
 
     public void SetAnimatorIdleToTrue() { animator.SetBool("Idle", true); }
 
+    public void SetVisibility(bool visible) { GetComponent<SpriteRenderer>().enabled = visible; }
+
 }
