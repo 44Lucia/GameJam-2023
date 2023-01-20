@@ -115,6 +115,7 @@ namespace Game
         public void StartGame()
         {
             //Enable Player Input
+            GameManager._GAME_MANAGER.resetPoints();
             SoundManager.Instance.PlayOnce(AudioClipName.CLICK_MENU);
             SceneManager.LoadScene("GameScene");
         }

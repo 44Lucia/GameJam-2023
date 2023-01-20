@@ -70,6 +70,12 @@ public class PlayerController : Singleton<PlayerController>
     // Update is called once per frame
     void Update()
     {
+        if (input.GetResetBallUpdate()) 
+        {
+            Ball.Instance.SetInitPosition();
+            Ball.Instance.AddForceWithRandomDirection();
+        }
+
         Move();
 
         if (input.GetIsShootingUpPlayer1Pressed())

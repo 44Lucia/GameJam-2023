@@ -89,6 +89,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetBall"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1cdaa68-bc26-4cef-bd5f-9bac92f6ba42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -183,7 +192,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d41a7fa7-3ac9-4567-b91b-df122e7bf2d8"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -194,7 +203,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""243c5ad6-ab78-4e59-a829-98dca25993c6"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -221,6 +230,17 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efe3d42f-13f4-4482-8be9-dd6a0585d18a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetBall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -266,6 +286,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Character_ShootPlayer1Down = m_Character.FindAction("ShootPlayer1Down", throwIfNotFound: true);
         m_Character_ShootPlayer2Down = m_Character.FindAction("ShootPlayer2Down", throwIfNotFound: true);
         m_Character_PauseMenu = m_Character.FindAction("PauseMenu", throwIfNotFound: true);
+        m_Character_ResetBall = m_Character.FindAction("ResetBall", throwIfNotFound: true);
         // Navigation
         m_Navigation = asset.FindActionMap("Navigation", throwIfNotFound: true);
         m_Navigation_Newaction = m_Navigation.FindAction("New action", throwIfNotFound: true);
@@ -335,6 +356,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ShootPlayer1Down;
     private readonly InputAction m_Character_ShootPlayer2Down;
     private readonly InputAction m_Character_PauseMenu;
+    private readonly InputAction m_Character_ResetBall;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
@@ -346,6 +368,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @ShootPlayer1Down => m_Wrapper.m_Character_ShootPlayer1Down;
         public InputAction @ShootPlayer2Down => m_Wrapper.m_Character_ShootPlayer2Down;
         public InputAction @PauseMenu => m_Wrapper.m_Character_PauseMenu;
+        public InputAction @ResetBall => m_Wrapper.m_Character_ResetBall;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -376,6 +399,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @PauseMenu.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseMenu;
                 @PauseMenu.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseMenu;
                 @PauseMenu.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPauseMenu;
+                @ResetBall.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnResetBall;
+                @ResetBall.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnResetBall;
+                @ResetBall.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnResetBall;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -401,6 +427,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @PauseMenu.started += instance.OnPauseMenu;
                 @PauseMenu.performed += instance.OnPauseMenu;
                 @PauseMenu.canceled += instance.OnPauseMenu;
+                @ResetBall.started += instance.OnResetBall;
+                @ResetBall.performed += instance.OnResetBall;
+                @ResetBall.canceled += instance.OnResetBall;
             }
         }
     }
@@ -447,6 +476,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnShootPlayer1Down(InputAction.CallbackContext context);
         void OnShootPlayer2Down(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);
+        void OnResetBall(InputAction.CallbackContext context);
     }
     public interface INavigationActions
     {

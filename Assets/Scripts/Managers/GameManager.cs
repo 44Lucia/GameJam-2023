@@ -37,6 +37,12 @@ public class GameManager : MonoBehaviour
         Goal.Instance.SetCanvasDrawPlayers.SetActive(true);
     }
 
+    public void resetPoints() 
+    { 
+        scorePlayer1 = 0;
+        scorePlayer2 = 0;
+    }
+
     public void addPointsPlayer1(int value) 
     {
         scorePlayer1 += value;

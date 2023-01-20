@@ -25,6 +25,8 @@ public class InputManager : MonoBehaviour
     private bool isShootingUpPlayer2;
     //Shoot Down Player 1
     private bool isShootingDownPlayer2;
+    //ResetBall
+    private bool isResetBall;
 
     private void Awake()
     {
@@ -46,6 +48,7 @@ public class InputManager : MonoBehaviour
             playerInput.Character.MovePlayer2.performed += LeftAxisUpdate2;
             playerInput.Character.ShootPlayer2Up.performed += ShootPlayer2UpUpdate;
             playerInput.Character.ShootPlayer2Down.performed += ShootPlayer2DownUpdate;
+            playerInput.Character.ResetBall.performed += ResetBallUpdate;
 
             _INPUT_MANAGER = this;
             DontDestroyOnLoad(this);
@@ -99,6 +102,11 @@ public class InputManager : MonoBehaviour
         isShootingDownPlayer2 = !isShootingDownPlayer2;
     }
 
+    private void ResetBallUpdate(InputAction.CallbackContext context)
+    {
+        isResetBall = !isResetBall;
+    }
+
     public void AddListennerToPressScape(UnityAction action){ scapePressed.AddListener(action); }
 
     public void RemoveListennerToPressScape(UnityAction action){ scapePressed.RemoveListener(action); }
@@ -107,6 +115,9 @@ public class InputManager : MonoBehaviour
     public Vector3 GetMovementButtonPressed() => this.currentMovementPlayer1Input;
     public bool GetIsShootingUpPlayer1Pressed() => this.isShootingUpPlayer1 == true;
     public bool GetIsShootingDownPlayer1Pressed() => this.isShootingDownPlayer1 == true;
+
+    //Reset ball
+    public bool GetResetBallUpdate() => this.isResetBall == true;
 
     //Player 2
     public Vector3 GetMovement2ButtonPressed() => this.currentMovementPlayer2Input;
