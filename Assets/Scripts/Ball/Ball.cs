@@ -52,7 +52,7 @@ public class Ball : Singleton<Ball>
     {
         currentInitPos = initPosPlayer1;
         if (targetIsPlayer2) { currentInitPos = initPosPlayer2; }
-        this.transform.position = currentInitPos.position;
+        gameObject.transform.position = currentInitPos.position;
     }
 
     public void SetTargetIsPlayer2(bool _targetIsPlayer2) { targetIsPlayer2 = _targetIsPlayer2; }
