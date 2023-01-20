@@ -26,8 +26,8 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Colliders")]
     [SerializeField] private GameObject topMapLimit;
     [SerializeField] private GameObject bottomMapLimit;
-    [SerializeField] private GameObject leftMapLimit;
-    [SerializeField] private GameObject rightMapLimit;
+    //[SerializeField] private GameObject leftMapLimit;
+    //[SerializeField] private GameObject rightMapLimit;
 
     [Header("Max Position")]
     [SerializeField] private float bottomMaxPosition;
@@ -52,11 +52,11 @@ public class PlayerController : Singleton<PlayerController>
         Physics2D.IgnoreCollision(bottomMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
         Physics2D.IgnoreCollision(bottomMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
 
-        Physics2D.IgnoreCollision(leftMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
+        /*Physics2D.IgnoreCollision(leftMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
         Physics2D.IgnoreCollision(leftMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
 
         Physics2D.IgnoreCollision(rightMapLimit.GetComponent<Collider2D>(), armUp.gameObject.GetComponent<Collider2D>(), true);
-        Physics2D.IgnoreCollision(rightMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(rightMapLimit.GetComponent<Collider2D>(), armDown.gameObject.GetComponent<Collider2D>(), true);*/
 
         //Default values movement
         finalVelocity = Vector3.zero;

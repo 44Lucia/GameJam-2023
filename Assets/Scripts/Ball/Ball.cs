@@ -32,8 +32,12 @@ public class Ball : Singleton<Ball>
         AddForceWithRandomDirection();
     }
 
-    private void AddForceWithRandomDirection() 
+    public void AddForceWithRandomDirection() 
     {
+        transform.eulerAngles = Vector3.zero;
+        //Debug.Log("VEL" + rb.velocity);
+        rb.velocity = Vector3.zero;
+        
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, Random.Range(minRandomDir, maxRandomDir));
         //Debug.Log(transform.eulerAngles.z);
         Vector3 force = -transform.right;

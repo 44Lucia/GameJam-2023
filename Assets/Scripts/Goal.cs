@@ -29,20 +29,20 @@ public class Goal : Singleton<Goal>
         if (collision.CompareTag("Ball") && isGoalPlayer1)
         {
             SoundManager.Instance.PlayOnce(AudioClipName.POINT);
-            GameManager._GAME_MANAGER.addPointsPlayer1(1);
+            GameManager._GAME_MANAGER.addPointsPlayer2(1);
             PlayerController.Instance.SetInitPosition();
             Ball.Instance.SetVisibility(false);
-            Ball.Instance.SetTargetIsPlayer2(true);
+            Ball.Instance.SetTargetIsPlayer2(false);
             StartCoroutine(SetBallPosition());
         }
 
         if (collision.CompareTag("Ball") && isGoalPlayer2)
         {
             SoundManager.Instance.PlayOnce(AudioClipName.POINT);
-            GameManager._GAME_MANAGER.addPointsPlayer2(1);
+            GameManager._GAME_MANAGER.addPointsPlayer1(1);
             Player2Controller.Instance.SetInitPosition();
             Ball.Instance.SetVisibility(false);
-            Ball.Instance.SetTargetIsPlayer2(false);
+            Ball.Instance.SetTargetIsPlayer2(true);
             StartCoroutine(SetBallPosition());
         }
     }
@@ -52,7 +52,8 @@ public class Goal : Singleton<Goal>
         yield return new WaitForSeconds(1.5f);
         Ball.Instance.SetVisibility(true);
         Ball.Instance.SetInitPosition();
-        Debug.Log("BALL RESET");
+        Ball.Instance.AddForceWithRandomDirection();
+        //Debug.Log("BALL RESET");
     }
 
     public GameObject SetCanvasWinPlayer1 { get => canvasPlayer1; set => canvasPlayer1 = value; }
