@@ -15,20 +15,7 @@ public class TimerUI : MonoBehaviour
         setTimerTime(timerTime);
         StartCoroutine(Counter());
 
-        if (timerTime <= 0){
-            if (GameManager._GAME_MANAGER.GetScorePlayer1 > GameManager._GAME_MANAGER.GetScorePlayer2)
-            {
-                GameManager._GAME_MANAGER.player1Win();
-            }
-            if (GameManager._GAME_MANAGER.GetScorePlayer2 > GameManager._GAME_MANAGER.GetScorePlayer1)
-            {
-                GameManager._GAME_MANAGER.player2Win();
-            }
-            if (GameManager._GAME_MANAGER.GetScorePlayer2 == GameManager._GAME_MANAGER.GetScorePlayer1)
-            {
-                GameManager._GAME_MANAGER.drawPlayers();
-            }
-        }
+        
     }
 
     public void setTimerTime(float time)
@@ -50,6 +37,25 @@ public class TimerUI : MonoBehaviour
             UIManager.Instance.GetTimerUI.setTimerTime(time);
 
             yield return null;
+        }
+
+        if (time <= 0)
+        {
+            if (GameManager._GAME_MANAGER.GetScorePlayer1 > GameManager._GAME_MANAGER.GetScorePlayer2)
+            {
+                Time.timeScale = 0f;
+                GameManager._GAME_MANAGER.player1Win();
+            }
+            if (GameManager._GAME_MANAGER.GetScorePlayer2 > GameManager._GAME_MANAGER.GetScorePlayer1)
+            {
+                Time.timeScale = 0f;
+                GameManager._GAME_MANAGER.player2Win();
+            }
+            if (GameManager._GAME_MANAGER.GetScorePlayer2 == GameManager._GAME_MANAGER.GetScorePlayer1)
+            {
+                Time.timeScale = 0f;
+                GameManager._GAME_MANAGER.drawPlayers();
+            }
         }
     }
 }
