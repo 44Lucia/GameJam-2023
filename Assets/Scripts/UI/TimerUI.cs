@@ -8,7 +8,7 @@ public class TimerUI : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField, Tooltip("Time in seconds")] private float timerTime;
 
-    private int minutes, seconds, cents;
+    private int minutes, seconds;
 
     private void Update()
     {
@@ -22,9 +22,8 @@ public class TimerUI : MonoBehaviour
 
         minutes = (int)(time / 60f);
         seconds = (int)(time - minutes * 60f);
-        cents = (int)((time - (int)time) * 100f);
 
-        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, cents);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public IEnumerator Counter()
